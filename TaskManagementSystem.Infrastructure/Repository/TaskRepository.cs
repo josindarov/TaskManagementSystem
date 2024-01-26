@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using TaskManagementSystem.Application.Interfaces;
 using TaskManagementSystem.Domain.Models.Tasks;
 using TaskManagementSystem.Infrastructure;
 
