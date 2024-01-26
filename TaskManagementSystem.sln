@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagementSystem.API", "TaskManagementSystem.API\TaskManagementSystem.API.csproj", "{9E1E2466-8445-4CB9-9F7C-2BA985626308}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagementSystem.Domain", "TaskManagementSystem.Domain\TaskManagementSystem.Domain.csproj", "{12A94113-53B3-484F-8473-6E3DCAC02A26}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagementSystem.Application", "TaskManagementSystem.Application\TaskManagementSystem.Application.csproj", "{DA019295-61F3-4AA2-8D51-2F381DC05FD0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagementSystem.Infrastucture", "TaskManagementSystem.Infrastucture\TaskManagementSystem.Infrastucture.csproj", "{AD162F17-AEB5-4B41-AC30-3887DA7D6FBC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9E1E2466-8445-4CB9-9F7C-2BA985626308}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E1E2466-8445-4CB9-9F7C-2BA985626308}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E1E2466-8445-4CB9-9F7C-2BA985626308}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E1E2466-8445-4CB9-9F7C-2BA985626308}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12A94113-53B3-484F-8473-6E3DCAC02A26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12A94113-53B3-484F-8473-6E3DCAC02A26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12A94113-53B3-484F-8473-6E3DCAC02A26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12A94113-53B3-484F-8473-6E3DCAC02A26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA019295-61F3-4AA2-8D51-2F381DC05FD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA019295-61F3-4AA2-8D51-2F381DC05FD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA019295-61F3-4AA2-8D51-2F381DC05FD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA019295-61F3-4AA2-8D51-2F381DC05FD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD162F17-AEB5-4B41-AC30-3887DA7D6FBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD162F17-AEB5-4B41-AC30-3887DA7D6FBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD162F17-AEB5-4B41-AC30-3887DA7D6FBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD162F17-AEB5-4B41-AC30-3887DA7D6FBC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
