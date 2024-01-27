@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using TaskManagementSystem.Application.Exceptions;
 using TaskManagementSystem.Application.Interfaces;
 using TaskManagementSystem.Domain.Models.Tasks;
 
@@ -18,8 +19,15 @@ public class TaskController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<Tasks>> PostTaskAsync(Tasks tasks)
     {
-        var postedTask = await _taskService.AddTaskAsync(tasks);
-        return Ok(postedTask);
+        try
+        {
+            var postedTask = await _taskService.AddTaskAsync(tasks);
+            return Ok(postedTask);
+        }
+        catch (TaskValidationException taskValidationException)
+        {
+            return BadRequest(taskValidationException.InnerException);
+        }
     }
 
     [HttpGet] 
@@ -32,22 +40,45 @@ public class TaskController : ControllerBase
     [HttpGet("{id}")]
     public async Task<ActionResult<Tasks>> GetTaskByIdAsync(Guid id)
     {
-        var task = await _taskService.GetTaskByIdAsync(id);
-        return Ok(task);
+        try
+        {
+            var task = await _taskService.GetTaskByIdAsync(id);
+            return Ok(task);
+        }
+        catch (TaskValidationException taskValidationException)
+        {
+            return BadRequest(taskValidationException.InnerException);
+        }
+        
     }
 
     [HttpDelete("{id}")]
     public async Task<ActionResult<Tasks>> DeleteTaskAsync(Guid id)
     {
-        var task = await _taskService.DeleteTask(id);
-        return task;
+        try
+        {
+            var task = await _taskService.DeleteTask(id);
+            return task;
+        }
+        catch (TaskValidationException taskValidationException)
+        {
+            return BadRequest(taskValidationException.InnerException);
+        }
     }
 
     [HttpPut]
     public async Task<ActionResult<Tasks>> UpdateTaskAsync(Tasks tasks)
     {
-        var task = await _taskService.UpdateTask(tasks);
-        return task;
+        try
+        {
+            var task = await _taskService.UpdateTask(tasks);
+            return task;
+        }
+        catch (TaskValidationException taskValidationException)
+        {
+            return BadRequest(taskValidationException.InnerException);
+        }
+        
     }
     
 }
