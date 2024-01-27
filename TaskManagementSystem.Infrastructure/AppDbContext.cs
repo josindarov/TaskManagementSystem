@@ -14,7 +14,7 @@ public class AppDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Tasks>()
-            .HasNoKey();
+            .HasKey(p => p.Id);
         
         base.OnModelCreating(modelBuilder);
     }
