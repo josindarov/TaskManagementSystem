@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
@@ -15,10 +16,11 @@ namespace TaskManagementSystem.Infrastucture.Migrations
                 name: "Tasks",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Title = table.Column<string>(type: "text", nullable: true),
-                    Description = table.Column<string>(type: "text", nullable: true),
-                    DueDate = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Title = table.Column<string>(type: "text", nullable: false),
+                    Description = table.Column<string>(type: "text", nullable: false),
+                    DueDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     TaskPriority = table.Column<string>(type: "text", nullable: false),
                     state = table.Column<string>(type: "text", nullable: false),
                     Note = table.Column<string>(type: "text", nullable: false)

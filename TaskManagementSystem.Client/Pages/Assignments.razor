@@ -19,8 +19,12 @@
             <td>@assignment.Title</td>
             <td>@assignment.Description</td>
             <td>@assignment.State</td>
-            <td></td>
+            <td>
+                <a href="@($"assignmentdetails/{@assignment.Id}")" class="btn btn-warning">Edit</a>
+            </td>
         </tr>
     }
     </tbody>
 </table>
+
+<a href="@($"assignmentdetails")" class="btn btn-success">Add New Task</a>

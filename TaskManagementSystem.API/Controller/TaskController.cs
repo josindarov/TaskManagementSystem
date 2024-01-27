@@ -39,7 +39,7 @@ public class TaskController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<Tasks>> GetTaskByIdAsync(Guid id)
+    public async Task<ActionResult<Tasks>> GetTaskByIdAsync(int id)
     {
         try
         {
@@ -54,7 +54,7 @@ public class TaskController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    public async Task<ActionResult<Tasks>> DeleteTaskAsync(Guid id)
+    public async Task<ActionResult<Tasks>> DeleteTaskAsync(int id)
     {
         try
         {

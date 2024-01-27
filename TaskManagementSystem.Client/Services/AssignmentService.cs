@@ -25,7 +25,7 @@ public class AssignmentService : IAssignmentService
         return assignments;
     }
 
-    public async Task<Assignment> GetAssignmentById(Guid id)
+    public async Task<Assignment> GetAssignmentById(int id)
     {
         var response = await _httpClient.GetStreamAsync($"api/Task/{id}");
 
@@ -37,17 +37,17 @@ public class AssignmentService : IAssignmentService
         return assignment;
     }
 
-    public async Task<Assignment> AddAssignmentAsync(Assignment assignment)
+    public async Task<CreateAssignmentDto> AddAssignmentAsync(CreateAssignmentDto assignment)
     {
         var itemJson = new StringContent(JsonSerializer.Serialize(assignment), Encoding.UTF8, "application/json");
 
-        var response = await _httpClient.PostAsync("api/Tasks", itemJson);
+        var response = await _httpClient.PostAsync("api/Task", itemJson);
 
         if(response.IsSuccessStatusCode)
         {
             var responseBody = await response.Content.ReadAsStreamAsync();
 
-            var addAssignment = await JsonSerializer.DeserializeAsync<Assignment>(responseBody,
+            var addAssignment = await JsonSerializer.DeserializeAsync<CreateAssignmentDto>(responseBody,
                 new JsonSerializerOptions()
                 {
                     PropertyNameCaseInsensitive = true
@@ -63,11 +63,11 @@ public class AssignmentService : IAssignmentService
     {
         var itemJson = new StringContent(JsonSerializer.Serialize(assignment), Encoding.UTF8, "application/json");
 
-        var response = await _httpClient.PutAsync("api/Tasks", itemJson);
+        var response = await _httpClient.PutAsync("api/Task", itemJson);
         return response.IsSuccessStatusCode;
     }
 
-    public async Task<bool> DeleteAssignmentAsync(Guid id)
+    public async Task<bool> DeleteAssignmentAsync(int id)
     {
         var response = await _httpClient.DeleteAsync($"api/Task/{id}");
         return response.IsSuccessStatusCode;

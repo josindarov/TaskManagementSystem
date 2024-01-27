@@ -1,0 +1,62 @@
+@page "/assignmentdetails"
+@page "/assignmentdetails/{id}"
+
+@if (string.IsNullOrEmpty(Id))
+{
+    <PageTitle>Add new Task</PageTitle>
+    <h3>Add new Task</h3>
+}
+else
+{
+    <PageTitle>Manage Task</PageTitle>
+    <h3>Manage Task</h3>
+}
+
+<div class="row">
+    <EditForm Model="@CreateAssignmentDto" OnValidSubmit="@HandleValidRequest" OnInvalidSubmit="@HandleFailedRequest">
+        <div class="form-group">
+            <label class="col-md-3">Title</label>
+            <InputText class="col-md-8 form-control" @bind-Value="@CreateAssignmentDto.Title"></InputText>
+        </div>
+        
+        <div class="form-group">
+            <label class="col-md-3">Description</label>
+            <InputText class="col-md-8 form-control" @bind-Value="@CreateAssignmentDto.Description"></InputText>
+        </div>
+        
+        <div class="form-group">
+            <label class="col-md-3">Task Priority</label>
+            <InputText class="col-md-8 form-control" @bind-Value="@CreateAssignmentDto.TaskPriority"></InputText>
+        </div>
+        
+        <div class="form-group">
+            <label class="col-md-3">Note</label>
+            <InputText class="col-md-8 form-control" @bind-Value="@CreateAssignmentDto.Note"></InputText>
+        </div>
+        
+        <div class="form-group">
+            <label class="col-md-3">State</label>
+            <InputText class="col-md-8 form-control" @bind-Value="@CreateAssignmentDto.State"></InputText>
+        </div>
+        
+        <div class="form-group">
+            <label class="col-md-3">Due Date</label>
+            <InputDate class="col-md-8 form-control" @bind-Value="@CreateAssignmentDto.DueDate"></InputDate>
+        </div>
+        
+        <br/>
+        <div class="form-group">
+            <button type="submit" class="btn btn-warning">Save Task</button>
+            <a @onclick="@GoToAssignments" class="btn btn-primary">Back</a>
+            <br/>
+            @if (Id != null)
+            {
+                <a @onclick="@DeleteAssignment" class="btn btn-danger">Delete Task</a>
+            }
+        </div>
+        <br/>
+        <p style="color: red">@Message</p>
+    </EditForm>
+</div>
+
+

@@ -5,8 +5,8 @@ namespace TaskManagementSystem.Client.Services;
 public interface IAssignmentService
 {
     Task<IEnumerable<Assignment>> GetAllAsync();
-    Task<Assignment> GetAssignmentById(Guid id);
-    Task<Assignment> AddAssignmentAsync(Assignment assignment);
+    Task<Assignment> GetAssignmentById(int id);
+    Task<CreateAssignmentDto> AddAssignmentAsync(CreateAssignmentDto assignment);
     Task<bool> UpdateAssignmentAsync(Assignment assignment);
-    Task<bool> DeleteAssignmentAsync(Guid id);
+    Task<bool> DeleteAssignmentAsync(int id);
 }
