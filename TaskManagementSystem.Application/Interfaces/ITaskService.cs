@@ -12,5 +12,5 @@ public interface ITaskService
     
     public Task<Tasks> DeleteTask(Guid id);
     
-    public Task<Tasks> UpdateTask(Guid id, Tasks tasks);
+    public Task<Tasks?> UpdateTask(Guid id, Tasks tasks);
 }
