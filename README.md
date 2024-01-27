@@ -15,6 +15,8 @@ browse at :
 *api-* [http://localhost:8080/swagger](http://localhost:8080/swagger/index.html)
 *blazor client application - [http://localhost:5284/](http://localhost:5284/)*
 
-**FYI:**
+# Disclaimer:
 *You will need to run blazor application outside of docker compose. Static web pages requires to setup web servers so for convenience, because of that you need to run the client application on your favouirite IDE or just run the following command inside `TaskManagementSystem/TaskManagementSystem.Client` folder : `dotnet run`*
+
+# YouTube video link: [Demo video](https://youtu.be/c1DBF3q8e_I?si=-1ef5iU7iPlsiiij)
 
