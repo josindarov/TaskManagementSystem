@@ -1,0 +1,26 @@
+@page "/assignments"
+
+<h3>Assignments</h3>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>State</th>
+        <th>Manage</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    @foreach (var assignment in AllAssignments)
+    {
+        <tr>
+            <td>@assignment.Title</td>
+            <td>@assignment.Description</td>
+            <td>@assignment.State</td>
+            <td></td>
+        </tr>
+    }
+    </tbody>
+</table>
