@@ -1,22 +1,32 @@
+using Microsoft.Extensions.Logging;
+using TaskManagementSystem.Application.Exceptions;
 using TaskManagementSystem.Application.Interfaces;
 using TaskManagementSystem.Domain.Models.Tasks;
 
 namespace TaskManagementSystem.Application.Services;
 
-public class TaskService : ITaskService
+public partial class TaskService : ITaskService
 {
     private readonly ITaskRepository _repository;
+    private readonly ILogger<TaskService> _logging;
 
-    public TaskService(ITaskRepository repository)
+    public TaskService(ITaskRepository repository, ILogger<TaskService> logging)
     {
         _repository = repository;
+        _logging = logging;
     }
-    public async Task<Tasks> AddTaskAsync(Tasks task)
-    {
-        var addedTask = await _repository.AddTaskAsync(task);
-        await _repository.SaveChangesAsync();
-        return addedTask;
-    }
+
+    public Task<Tasks> AddTaskAsync(Tasks task) =>
+        TryCatch( async () =>
+        {
+            ValidateTaskOnAdd(task);
+            
+            var addedTask = await _repository
+                .AddTaskAsync(task);
+            
+            await _repository.SaveChangesAsync();
+            return addedTask;
+        });
 
     public async Task<Tasks> GetTaskByIdAsync(Guid id)
     {
