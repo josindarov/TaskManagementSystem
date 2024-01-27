@@ -43,12 +43,16 @@ public partial class TaskService : ITaskService
         return _repository.GetAllTasks();
     }
 
-    public async Task<Tasks> DeleteTask(Guid id)
-    {
-        var task = await _repository.DeleteTask(id);
-        await _repository.SaveChangesAsync();
-        return task;
-    }
+    public Task<Tasks> DeleteTask(Guid id) =>
+        TryCatch(async () =>
+        {
+            var task = await _repository
+                .DeleteTask(id);
+            
+            CheckTaskIsFoundOrNot(id, task);
+            await _repository.SaveChangesAsync();
+            return task;
+        });
 
     public async Task<Tasks?> UpdateTask(Guid id, Tasks tasks)
     {
