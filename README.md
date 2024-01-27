@@ -12,9 +12,9 @@ Spin up api and blazor client applications locally. Initial run takes time to do
 `docker-compose -f docker-compose.yml --build`
 
 browse at : 
-*api- * [http://localhost:8080/swagger](http://localhost:8080/swagger/index.html)
+*api-* [http://localhost:8080/swagger](http://localhost:8080/swagger/index.html)
 *blazor client application - [http://localhost:8080/](http://localhost:8080/)*
 
-**FYI: **
+**FYI:**
 *You will need to run blazor application outside of docker compose. Static web pages requires to setup web servers so for convenience, because of that you need to run the client application on your favouirite IDE or just run the following command inside `TaskManagementSystem/TaskManagementSystem.Client` folder : `dotnet run`*
 
