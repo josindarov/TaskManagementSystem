@@ -20,3 +20,4 @@ browse at :
 
 # YouTube video link: [Demo video](https://youtu.be/c1DBF3q8e_I?si=-1ef5iU7iPlsiiij)
 
+# Resume: [link](https://github.com/josindarov/TaskManagementSystem/blob/main/CV.pdf)
