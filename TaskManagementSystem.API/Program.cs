@@ -26,6 +26,7 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
+// initializing database 
 var scope = app.Services.CreateScope();
 var db = scope.ServiceProvider.GetService<AppDbContext>();
 

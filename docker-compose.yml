@@ -1,21 +1,15 @@
 ﻿services:
-  taskmanagementsystem.api:
-    image: taskmanagementsystem.api
+  api:
+    image: api
     build:
       context: .
       dockerfile: TaskManagementSystem.API/Dockerfile
     ports:
-      - "80:80"
+      - "8080:80"
     depends_on:
       - "postgres"
     networks:
       - tsm
-    
-  taskmanagementsystem.client:
-    image: taskmanagementsystem.client
-    build:
-      context: .
-      dockerfile: TaskManagementSystem.Client/Dockerfile
   
   postgres:
     container_name: 'postgres'
@@ -27,7 +21,7 @@
 
 volumes:
   postgres_data:
-    
+
 networks:
   tsm:
     driver: bridge
