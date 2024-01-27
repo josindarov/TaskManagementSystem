@@ -1,16 +1,8 @@
 @page "/assignmentdetails"
 @page "/assignmentdetails/{id}"
 
-@if (string.IsNullOrEmpty(Id))
-{
-    <PageTitle>Add new Task</PageTitle>
-    <h3>Add new Task</h3>
-}
-else
-{
-    <PageTitle>Manage Task</PageTitle>
-    <h3>Manage Task</h3>
-}
+<PageTitle>Add new Task</PageTitle>
+<h3>Add new Task</h3>
 
 <div class="row">
     <EditForm Model="@CreateAssignmentDto" OnValidSubmit="@HandleValidRequest" OnInvalidSubmit="@HandleFailedRequest">
@@ -48,15 +40,8 @@ else
         <div class="form-group">
             <button type="submit" class="btn btn-warning">Save Task</button>
             <a @onclick="@GoToAssignments" class="btn btn-primary">Back</a>
-            <br/>
-            @if (Id != null)
-            {
-                <a @onclick="@DeleteAssignment" class="btn btn-danger">Delete Task</a>
-            }
         </div>
         <br/>
         <p style="color: red">@Message</p>
     </EditForm>
 </div>
-
-
