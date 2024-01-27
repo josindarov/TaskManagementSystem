@@ -18,3 +18,5 @@ browse at :
 **FYI:**
 *You will need to run blazor application outside of docker compose. Static web pages requires to setup web servers so for convenience, because of that you need to run the client application on your favouirite IDE or just run the following command inside `TaskManagementSystem/TaskManagementSystem.Client` folder : `dotnet run`*
 
+# YouTube video link: [Demo video](https://youtu.be/c1DBF3q8e_I?si=-1ef5iU7iPlsiiij)
+
