@@ -14,6 +14,7 @@ public class TaskService : ITaskService
     public async Task<Tasks> AddTaskAsync(Tasks task)
     {
         var addedTask = await _repository.AddTaskAsync(task);
+        await _repository.SaveChangesAsync();
         return addedTask;
     }
 
@@ -31,12 +32,14 @@ public class TaskService : ITaskService
     public async Task<Tasks> DeleteTask(Guid id)
     {
         var task = await _repository.DeleteTask(id);
+        await _repository.SaveChangesAsync();
         return task;
     }
 
     public async Task<Tasks?> UpdateTask(Guid id, Tasks tasks)
     {
         var task = await _repository.UpdateTask(id, tasks);
+        await _repository.SaveChangesAsync();
         return task;
     }
 }
