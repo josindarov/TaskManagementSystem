@@ -19,7 +19,7 @@ public partial class TaskService : ITaskService
     public Task<Tasks> AddTaskAsync(Tasks task) =>
         TryCatch( async () =>
         {
-            ValidateTaskOnAdd(task);
+            CheckTaskIsNotNull(task);
             
             var addedTask = await _repository
                 .AddTaskAsync(task);
@@ -54,10 +54,20 @@ public partial class TaskService : ITaskService
             return task;
         });
 
-    public async Task<Tasks?> UpdateTask(Guid id, Tasks tasks)
-    {
-        var task = await _repository.UpdateTask(id, tasks);
-        await _repository.SaveChangesAsync();
-        return task;
-    }
+    public Task<Tasks?> UpdateTask(Tasks tasks) =>
+        TryCatch(async () =>
+        {
+            CheckTaskIsNotNull(tasks);
+
+            var updatedTask = await _repository
+                .GetTaskByIdAsync(tasks.Id);
+
+            CheckTaskIsFoundOrNot(tasks.Id, updatedTask);
+
+            var task = await _repository
+                .UpdateTask(tasks.Id, tasks);
+
+            await _repository.SaveChangesAsync();
+            return task;
+        });
 }

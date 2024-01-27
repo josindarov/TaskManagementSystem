@@ -43,10 +43,10 @@ public class TaskController : ControllerBase
         return task;
     }
 
-    [HttpPut("{id}")]
-    public async Task<ActionResult<Tasks>> UpdateTaskAsync(Guid id, Tasks tasks)
+    [HttpPut]
+    public async Task<ActionResult<Tasks>> UpdateTaskAsync(Tasks tasks)
     {
-        var task = await _taskService.UpdateTask(id, tasks);
+        var task = await _taskService.UpdateTask(tasks);
         return task;
     }
     
