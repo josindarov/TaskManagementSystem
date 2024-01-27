@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using TaskManagementSystem.Application.Interfaces;
-using TaskManagementSystem.Application.Services;
 using TaskManagementSystem.Domain.Models.Tasks;
 
 namespace TaskManagementSystem.Infrastructure.Repository;
@@ -21,7 +20,7 @@ public class TaskRepository : ITaskRepository
         return createTask.Entity;
     }
 
-    public async Task<Tasks> GetTaskByIdAsync(Guid id)
+    public async Task<Tasks> GetTaskByIdAsync(int id)
     {
         var task = await _appDbContext.Tasks
             .FirstOrDefaultAsync(a => a.Id == id);
@@ -34,7 +33,7 @@ public class TaskRepository : ITaskRepository
         return _appDbContext.Tasks.AsQueryable();
     }
 
-    public async Task<Tasks> DeleteTask(Guid id)
+    public async Task<Tasks> DeleteTask(int id)
     {
         var deletedTask = await _appDbContext.Tasks
             .FirstOrDefaultAsync(a => a.Id == id);
@@ -43,7 +42,7 @@ public class TaskRepository : ITaskRepository
         return deletedTask;
     }
 
-    public async Task<Tasks?> UpdateTask(Guid id, Tasks task)
+    public async Task<Tasks?> UpdateTask(int id, Tasks task)
     {
         var updatedTask = await _appDbContext.Tasks
             .FirstOrDefaultAsync(a => a.Id == id);
@@ -55,7 +54,7 @@ public class TaskRepository : ITaskRepository
             updatedTask.Description = task.Description;
             updatedTask.TaskPriority = task.TaskPriority;
             updatedTask.DueDate = task.DueDate;
-            updatedTask.state = task.state;
+            updatedTask.State = task.State;
             updatedTask.Note = task.Note;
 
             return updatedTask;

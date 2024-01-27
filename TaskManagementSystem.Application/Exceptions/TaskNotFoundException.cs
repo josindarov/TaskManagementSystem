@@ -2,7 +2,7 @@ namespace TaskManagementSystem.Application.Exceptions;
 
 public class TaskNotFoundException : Exception
 {
-    public TaskNotFoundException(Guid id)
+    public TaskNotFoundException(int id)
         : base($"Task is not found in {id}")
     { }
 }

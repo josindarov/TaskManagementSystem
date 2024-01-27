@@ -12,8 +12,8 @@ using TaskManagementSystem.Infrastructure;
 namespace TaskManagementSystem.Infrastucture.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240127082745_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20240127174408_SecondMigration")]
+    partial class SecondMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,17 +27,24 @@ namespace TaskManagementSystem.Infrastucture.Migrations
 
             modelBuilder.Entity("TaskManagementSystem.Domain.Models.Tasks.Tasks", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<DateTimeOffset>("DueDate")
+                    b.Property<DateTime>("DueDate")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Note")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("State")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -46,9 +53,6 @@ namespace TaskManagementSystem.Infrastucture.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Title")
-                        .HasColumnType("text");
-
-                    b.Property<string>("state")
                         .IsRequired()
                         .HasColumnType("text");
 

@@ -28,7 +28,7 @@ public partial class TaskService : ITaskService
             return addedTask;
         });
 
-    public Task<Tasks> GetTaskByIdAsync(Guid id) =>
+    public Task<Tasks> GetTaskByIdAsync(int id) =>
         TryCatch(async () =>
         {
             var task = await _repository
@@ -43,7 +43,7 @@ public partial class TaskService : ITaskService
         return _repository.GetAllTasks();
     }
 
-    public Task<Tasks> DeleteTask(Guid id) =>
+    public Task<Tasks> DeleteTask(int id) =>
         TryCatch(async () =>
         {
             var task = await _repository

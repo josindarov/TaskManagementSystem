@@ -1,8 +1,7 @@
 namespace TaskManagementSystem.Client.Model;
 
-public class Assignment
+public class CreateAssignmentDto
 {
-    public int Id { get; set; }
     public string? Title { get; set; }
     
     public string? Description { get; set; }

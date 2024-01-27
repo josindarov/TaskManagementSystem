@@ -13,7 +13,7 @@ public partial class TaskService
         }
     }
 
-    private static void CheckTaskIsFoundOrNot(Guid id, Tasks tasks)
+    private static void CheckTaskIsFoundOrNot(int id, Tasks tasks)
     {
         if (tasks is null)
         {
