@@ -17,4 +17,12 @@ public partial class TaskService
             throw new TaskNullException();
         }
     }
+
+    private static void CheckTaskIsFoundOrNot(Guid id, Tasks tasks)
+    {
+        if (tasks is null)
+        {
+            throw new TaskNotFoundException(id);
+        }
+    }
 }

@@ -28,11 +28,15 @@ public partial class TaskService : ITaskService
             return addedTask;
         });
 
-    public async Task<Tasks> GetTaskByIdAsync(Guid id)
-    {
-        var task = await _repository.GetTaskByIdAsync(id);
-        return task;
-    }
+    public Task<Tasks> GetTaskByIdAsync(Guid id) =>
+        TryCatch(async () =>
+        {
+            var task = await _repository
+                .GetTaskByIdAsync(id);
+            
+            CheckTaskIsFoundOrNot(id, task);
+            return task;
+        });
 
     public IQueryable<Tasks> GetAllTasks()
     {
