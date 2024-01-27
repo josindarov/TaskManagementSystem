@@ -20,14 +20,22 @@ public partial class TaskService
         }
         catch (TaskNotFoundException taskNotFoundException)
         {
-            throw CreateAndLogValidationException(taskNotFoundException);
+            throw CreateAndLogValidationExceptionIfTaskNotFound(taskNotFoundException);
         }
     }
 
     private TaskValidationException CreateAndLogValidationException(Exception exception)
     {
-        var taskValidationExcepiton = new TaskValidationException(exception);
+        var taskValidationException = new TaskValidationException(exception);
         _logging.LogError("Validation error occurs, fix it and try again");
-        return taskValidationExcepiton;
+        return taskValidationException;
+    }
+    
+    private TaskValidationException CreateAndLogValidationExceptionIfTaskNotFound(Exception exception)
+    {
+        var taskValidationException = new TaskValidationException(exception);
+        _logging.LogError("Task is not found in given id");
+        return taskValidationException;
     }
 }
+
