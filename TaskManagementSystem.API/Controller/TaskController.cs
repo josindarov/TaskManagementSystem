@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using TaskManagementSystem.Application.Exceptions;
 using TaskManagementSystem.Application.Interfaces;
 using TaskManagementSystem.Domain.Models.Tasks;
@@ -31,9 +32,9 @@ public class TaskController : ControllerBase
     }
 
     [HttpGet] 
-    public ActionResult<IQueryable<Tasks>> GetTasksList()
+    public async Task<ActionResult<IQueryable<Tasks>>> GetTasksList()
     {
-        var tasks =  _taskService.GetAllTasks();
+        var tasks =  await _taskService.GetAllTasks().ToListAsync();
         return Ok(tasks);
     }
 
