@@ -12,7 +12,7 @@ using TaskManagementSystem.Infrastructure;
 namespace TaskManagementSystem.Infrastucture.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240126172327_InitialCreate")]
+    [Migration("20240127082745_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -27,14 +27,15 @@ namespace TaskManagementSystem.Infrastucture.Migrations
 
             modelBuilder.Entity("TaskManagementSystem.Domain.Models.Tasks.Tasks", b =>
                 {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
                     b.Property<string>("Description")
                         .HasColumnType("text");
 
                     b.Property<DateTimeOffset>("DueDate")
                         .HasColumnType("timestamp with time zone");
-
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uuid");
 
                     b.Property<string>("Note")
                         .IsRequired()
@@ -50,6 +51,8 @@ namespace TaskManagementSystem.Infrastucture.Migrations
                     b.Property<string>("state")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.HasKey("Id");
 
                     b.ToTable("Tasks");
                 });

@@ -25,6 +25,7 @@ namespace TaskManagementSystem.Infrastucture.Migrations
                 },
                 constraints: table =>
                 {
+                    table.PrimaryKey("PK_Tasks", x => x.Id);
                 });
         }
 
