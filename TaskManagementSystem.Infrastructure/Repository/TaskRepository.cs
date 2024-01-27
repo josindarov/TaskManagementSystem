@@ -1,61 +1,71 @@
 using Microsoft.EntityFrameworkCore;
+using TaskManagementSystem.Application.Interfaces;
+using TaskManagementSystem.Application.Services;
 using TaskManagementSystem.Domain.Models.Tasks;
-using TaskManagementSystem.Infrastructure;
 
-namespace TaskManagementSyst.Infrastructure.Repository;
+namespace TaskManagementSystem.Infrastructure.Repository;
 
 public class TaskRepository : ITaskRepository
 {
-    private readonly AppDbContext _dbContext;
+    private readonly AppDbContext _appDbContext;
 
-    public TaskRepository(AppDbContext dbContext)
+    public TaskRepository(AppDbContext appDbContext)
     {
-        _dbContext = dbContext;
+        _appDbContext = appDbContext;
     }
     public async Task<Tasks> AddTaskAsync(Tasks task)
     {
-        var createdTask = await 
-            _dbContext.Tasks.AddAsync(task);
+        var createTask = await _appDbContext.Tasks
+            .AddAsync(task);
 
-        return createdTask.Entity;
+        return createTask.Entity;
     }
 
     public async Task<Tasks> GetTaskByIdAsync(Guid id)
     {
-        Tasks? task = await _dbContext.Tasks.
-            FirstOrDefaultAsync(p => p.Id == id);
+        var task = await _appDbContext.Tasks
+            .FirstOrDefaultAsync(a => a.Id == id);
 
         return task;
     }
 
     public IQueryable<Tasks> GetAllTasks()
     {
-        return _dbContext.Tasks.AsQueryable();
+        return _appDbContext.Tasks.AsQueryable();
     }
 
     public async Task<Tasks> DeleteTask(Guid id)
     {
-        Tasks? deletedTask = await _dbContext.Tasks.
-            FirstOrDefaultAsync(p => p.Id == id);
+        var deletedTask = await _appDbContext.Tasks
+            .FirstOrDefaultAsync(a => a.Id == id);
 
-        _dbContext.Tasks.Remove(deletedTask);
-
+        _appDbContext.Tasks.Remove(deletedTask);
         return deletedTask;
     }
 
-    public async Task<Tasks> UpdateTask(Guid id, Tasks task)
+    public async Task<Tasks?> UpdateTask(Guid id, Tasks task)
     {
-        Tasks? updatedTask = await _dbContext.Tasks.
-            FirstOrDefaultAsync(p => p.Id == id);
+        var updatedTask = await _appDbContext.Tasks
+            .FirstOrDefaultAsync(a => a.Id == id);
 
-        updatedTask.Id = task.Id;
-        updatedTask.Title = task.Title;
-        updatedTask.Description = task.Description;
-        updatedTask.TaskPriority = task.TaskPriority;
-        updatedTask.DueDate = task.DueDate;
-        updatedTask.state = task.state;
-        updatedTask.Note = task.Note;
+        if (updatedTask != null)
+        {
+            updatedTask.Id = task.Id;
+            updatedTask.Title = task.Title;
+            updatedTask.Description = task.Description;
+            updatedTask.TaskPriority = task.TaskPriority;
+            updatedTask.DueDate = task.DueDate;
+            updatedTask.state = task.state;
+            updatedTask.Note = task.Note;
 
-        return updatedTask;
+            return updatedTask;
+        }
+
+        return null;
+    }
+
+    public async Task<bool> SaveChangesAsync(CancellationToken cancellationToken = default)
+    {
+        return await _appDbContext.SaveChangesAsync(cancellationToken) > 0;
     }
 }
