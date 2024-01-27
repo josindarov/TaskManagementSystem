@@ -13,26 +13,30 @@ public class TaskService : ITaskService
     }
     public async Task<Tasks> AddTaskAsync(Tasks task)
     {
-        throw new NotImplementedException();
+        var addedTask = await _repository.AddTaskAsync(task);
+        return addedTask;
     }
 
     public async Task<Tasks> GetTaskByIdAsync(Guid id)
     {
-        throw new NotImplementedException();
+        var task = await _repository.GetTaskByIdAsync(id);
+        return task;
     }
 
     public IQueryable<Tasks> GetAllTasks()
     {
-        throw new NotImplementedException();
+        return _repository.GetAllTasks();
     }
 
     public async Task<Tasks> DeleteTask(Guid id)
     {
-        throw new NotImplementedException();
+        var task = await _repository.DeleteTask(id);
+        return task;
     }
 
-    public async Task<Tasks> UpdateTask(Guid id, Tasks tasks)
+    public async Task<Tasks?> UpdateTask(Guid id, Tasks tasks)
     {
-        throw new NotImplementedException();
+        var task = await _repository.UpdateTask(id, tasks);
+        return task;
     }
 }
